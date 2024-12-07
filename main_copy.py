@@ -13,18 +13,6 @@ with st.sidebar:
 st.title("💬 AI Eminem Chatbot")
 st.caption("🚀 A Streamlit chatbot powered by OpenAI")
 
-# Custom HTML and JS for embedding the Gradio app
-gradio_app_html = """
-<script
-    type="module"
-    src="https://gradio.s3-us-west-2.amazonaws.com/4.44.1/gradio.js"
-></script>
-<gradio-app src="https://mrfakename-e2-f5-tts.hf.space"></gradio-app>
-"""
-
-# Render the HTML in Streamlit
-st.components.v1.html(gradio_app_html, height=1650)
-
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {
