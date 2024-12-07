@@ -1,2 +1,0 @@
-openai
-huggingface_hub==0.17.0
