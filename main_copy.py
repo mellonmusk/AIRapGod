@@ -4,6 +4,9 @@ import streamlit as st
 from openai import OpenAI
 from PIL import Image
 
+HF_TOKEN = st.secrets["HF_TOKEN"]
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
 image_client = InferenceClient("ZB-Tech/Text-to-Image", token=HF_TOKEN)
 
 st.title("💬 AI Eminem Chatbot")
