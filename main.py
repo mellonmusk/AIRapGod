@@ -1,20 +1,20 @@
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 from huggingface_hub import login, InferenceClient
 import streamlit as st  # streamlit run main.py to start the app
 from openai import OpenAI
 from PIL import Image
 
-#load_dotenv()
-#api_token = os.getenv("HF_TOKEN")
-#login(api_token)
-#openai_api_key = os.getenv("OPENAI_API_KEY")
+load_dotenv()
+api_token = os.getenv("HF_TOKEN")
+login(api_token)
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Initialize Hugging Face Inference Client
-if not HF_TOKEN:
+if not api_token:
     st.info("Please add your HuggingFace API key to continue.")
     st.stop()
-image_client = InferenceClient("ZB-Tech/Text-to-Image", token=HF_TOKEN)
+image_client = InferenceClient("ZB-Tech/Text-to-Image", token=api_token)
 
 st.title("💬 AI Eminem Chatbot")
 st.caption("🚀 A Streamlit chatbot powered by OpenAI")
@@ -60,11 +60,11 @@ st.chat_message(st.session_state.messages[2]["role"]).write(st.session_state.mes
 
 
 if prompt := st.chat_input():
-    if not OPENAI_API_KEY:
+    if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=openai_api_key)
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
     response = client.chat.completions.create(model="gpt-4o-mini", messages=st.session_state.messages)
