@@ -22,7 +22,7 @@ gradio_app_html = """
 """
 
 # Render the HTML in Streamlit
-st.components.v1.html(gradio_app_html, height=600)
+st.components.v1.html(gradio_app_html)
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
