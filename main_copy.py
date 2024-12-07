@@ -8,7 +8,8 @@ HF_TOKEN = st.secrets["HF_TOKEN"]
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 image_client = InferenceClient("ZB-Tech/Text-to-Image", token=HF_TOKEN)
-
+with st.sidebar:
+    "[Listen to your rap verse here in full screen](https://mrfakename-e2-f5-tts.hf.space)"
 st.title("💬 AI Eminem Chatbot")
 st.caption("🚀 A Streamlit chatbot powered by OpenAI")
 
@@ -22,7 +23,7 @@ gradio_app_html = """
 """
 
 # Render the HTML in Streamlit
-st.components.v1.html(gradio_app_html, height=2000)
+st.components.v1.html(gradio_app_html, height=1800)
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
