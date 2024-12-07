@@ -12,20 +12,17 @@ image_client = InferenceClient("ZB-Tech/Text-to-Image", token=HF_TOKEN)
 st.title("💬 AI Eminem Chatbot")
 st.caption("🚀 A Streamlit chatbot powered by OpenAI")
 
-# Embed Gradio app
-gradio_app_url = "https://mrfakename-e2-f5-tts.hf.space"
-iframe_html = f"""
-    <iframe
-        src="{gradio_app_url}"
-        width="100%"
-        height="600px"
-        style="border: none;"
-    ></iframe>
+# Custom HTML and JS for embedding the Gradio app
+gradio_app_html = """
+<script
+    type="module"
+    src="https://gradio.s3-us-west-2.amazonaws.com/4.44.1/gradio.js"
+></script>
+<gradio-app src="https://mrfakename-e2-f5-tts.hf.space"></gradio-app>
 """
 
-# Display the Gradio app in Streamlit
-st.components.v1.html(iframe_html, height=600)
-
+# Render the HTML in Streamlit
+st.components.v1.html(gradio_app_html, height=600)
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
