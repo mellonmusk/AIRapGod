@@ -21,11 +21,11 @@ with st.sidebar:
     "Select a song style to reference and listen below.🎧 You can also download it!",
     ["Default", "Lose Yourself(2002)", "My Name Is(1999)", "Fuel(2024)" ],
     captions=[
+        "This bot studied all of Eminem's albums and lyrics, so the bot will choose for you. You can hear his voice at an interview below.",
         "With a steady, driving beat and intense lyrical delivery, this song captures the feeling of urgency and determination, reflecting Eminem’s determination to seize the moment.",
         "Characterized by its playful and irreverent flow, this track introduces Eminem’s alter ego with sharp, witty rhymes and a mischievous tone that makes it unforgettable.",
         "Featuring a fast-paced, aggressive flow, this track unleashes a wave of energy and anger, with a raw, intense delivery that reflects Eminem’s power and urgency.",
-        "This bot studied all of Eminem's albums and lyrics, so the bot will choose for you. You can hear his voice at an interview below."
-    ],
+        ],
     key = "reference_song"
 )
 
