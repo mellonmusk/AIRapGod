@@ -12,28 +12,27 @@ if not api_token:
     st.info("Please add your HuggingFace API key to continue.")
     st.stop()
 image_client = InferenceClient("ZB-Tech/Text-to-Image")
-
 if 'reference_song' not in st.session_state:
     st.session_state.reference_song = "Default"
     
 with st.sidebar:
     reference_song = st.radio( 
     "Select a song style to reference and listen below.🎧 You can also download it!",
-    ["Default", "Lose Yourself(2002)", "My Name Is(1999)", "Fuel(2024)" ],
+    ["Default", "Lose Yourself(2002)", "Monster(2013)", "Fuel(2024)" ],
     captions=[
-        "This bot studied all of Eminem's albums and lyrics, so the bot will choose for you. You can hear his voice at an interview below.",
+        "This bot studied all of Eminem's albums and lyrics, so the bot will choose for you. You can hear his voice at an interview below."
         "With a steady, driving beat and intense lyrical delivery, this song captures the feeling of urgency and determination, reflecting Eminem’s determination to seize the moment.",
-        "Characterized by its playful and irreverent flow, this track introduces Eminem’s alter ego with sharp, witty rhymes and a mischievous tone that makes it unforgettable.",
+        "A smoother, more radio-friendly flow with introspective yet accessible lyrics, differentiated from Eminem's other songs by its pop-heavy structure and Rihanna's anthemic chorus, which softens the typically aggressive tone of his verses.",
         "Featuring a fast-paced, aggressive flow, this track unleashes a wave of energy and anger, with a raw, intense delivery that reflects Eminem’s power and urgency.",
-        ],
+    ],
     key = "reference_song"
 )
 
     # Map radio button options to their respective audio files
     audio_files = {
-    "Lose Yourself(2002)": "eminemRap.m4a",
-    "My Name Is(1999)": "eminemVoice.m4a",
-    "Fuel(2024)": "eminemRap.m4a", 
+    "Lose Yourself(2002)": "Lose Yourself.m4a",
+    "Monster(2013)": "Monster.m4a",
+    "Fuel(2024)": "Fuel.m4a", 
     "Default": "eminemVoice.m4a",
     }
 
@@ -77,15 +76,9 @@ st.chat_message(st.session_state.messages[1]["role"]).write(st.session_state.mes
     
 
 if topic := st.chat_input():
-    if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
-        
     client = OpenAI(api_key=openai_api_key)
     
     st.chat_message("user").write(topic)
-    
-    
     
     if reference_song == "Lose Yourself(2002)":
         content = "You are AI Eminem. Eminem, a.k.a rap god, is the greatest rapper of all time and he is good at lyrical miracle. Talk like him. Also, I will give you a topic so create rap verses about it as if you are Eminem. Study all his previous albums and lyrics, and then create verses just like him. I want Eminem Style verses. Your name is AI Eminem, a.k.a AI rapgod.\
@@ -98,14 +91,14 @@ Given the topic, generate a rap verse inspired by it.\
 5. What rhymes or lyrical techniques did you consider to craft the verse?\
 \
 Now, answer the questions and provide the rap verse, the song references, and the rhymes considered."
-    elif reference_song == "My Name Is(1999)":
+    elif reference_song == "Monster(2013)":
         content = "You are AI Eminem. Eminem, a.k.a rap god, is the greatest rapper of all time and he is good at lyrical miracle. Talk like him. Also, I will give you a topic so create rap verses about it as if you are Eminem. Study all his previous albums and lyrics, and then create verses just like him. I want Eminem Style verses. Your name is AI Eminem, a.k.a AI rapgod.\
 Given the topic, generate a rap verse inspired by it.\
 \
 1. Provide a list of words that rhyme with the word '{topic}' (including both exact and near rhymes). Do the same thing using one word related to '{topic}' as keyword. \
-2. Reference Eminem's song 'My Name Is(1999)' to create a good flow. \
+2. Reference Eminem's song 'Monster(2013)' to create a good flow. \
 3. Create a rap verse that incorporates the theme of '{topic}'. Use all the words in rhyme lists you've created.\
-4. From 'My Name Is(1999)', which part did you draw inspiration from while creating this verse? \
+4. From 'Monster(2013)', which part did you draw inspiration from while creating this verse? \
 5. What rhymes or lyrical techniques did you consider to craft the verse?\
 \
 Now, answer the questions and provide the rap verse, the song references, and the rhymes considered."
@@ -125,9 +118,7 @@ Now, answer the questions and provide the rap verse, the song references, and th
 
     st.session_state.messages.append({"role": "user", "content": content})
     st.session_state.messages.append({"role": "user", "content": f"The topic is '{topic}'."})
-
-
-   
+    
     with st.spinner("Generating a verse..."):
         response = client.chat.completions.create(model="gpt-4o-mini", messages=st.session_state.messages)
         msg = response.choices[0].message.content
