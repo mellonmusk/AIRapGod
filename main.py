@@ -24,7 +24,7 @@ with st.sidebar:
     captions=[
         "This bot studied all of Eminem's albums and lyrics, so the bot will choose for you. You can hear his voice at an interview below.",
         "With a steady, driving beat and intense lyrical delivery, this song captures the feeling of urgency and determination, reflecting Eminem’s determination to seize the moment.",
-        "A smoother, more radio-friendly flow with introspective yet accessible lyrics, differentiated from Eminem's other songs by its pop-heavy structure and Rihanna's anthemic chorus, which softens the typically aggressive tone of his verses.",
+        "Featuring a smoother, radio-friendly flow with introspective yet accessible lyrics, this track stands out for its balanced and approachable delivery, showcasing Eminem’s adaptability in connecting with a broader audience through captivating rap verses.",
         "Featuring a fast-paced, aggressive flow, this track unleashes a wave of energy and anger, with a raw, intense delivery that reflects Eminem’s power and urgency.",
     ],
 )
