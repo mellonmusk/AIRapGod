@@ -1,7 +1,7 @@
 # AIRapGod
 using streamlit and huggingface
 
-Visit this website for demo: (But I am using tokens with restricted billings so after changing the token I will upload the link😅)
+Visit this website for demo: https://ai-rapgod.streamlit.app/ (used tokens with restricted billings...)
 
 <h2>How to use</h2>  
 .venv\Scripts\activate   
